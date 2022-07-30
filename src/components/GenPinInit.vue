@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessageBox } from 'element-plus'
+import { invoke } from '@tauri-apps/api'
 
 let pinId = 0;
 export default defineComponent({
@@ -35,7 +36,8 @@ export default defineComponent({
         },
         genCodeEnd() {
             this.dialogTableVisible = false;
-            this.$copyText(this.result);
+            // this.$copyText(this.result);
+            invoke('copy_text', { text: this.result });
         },
         genCodeDo() {
             if (this.pinIsUpdate == true) {
@@ -63,10 +65,11 @@ export default defineComponent({
                 this.genCodeDo();
                 this.dialogTableVisible = true;
             }
-        }
+        },
     },
     mounted() {
         this.updatePinTables();
+
     },
     watch: {
         pinCfg: {
