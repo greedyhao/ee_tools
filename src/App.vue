@@ -1,19 +1,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-
-let id = 0;
 let pinId = 0;
 export default defineComponent({
   data() {
     return {
-      picked: "A",
-      portTables: [
-        { id: id++, name: "GPIOA", value: "A" },
-        { id: id++, name: "GPIOB", value: "B" },
-        { id: id++, name: "GPIOE", value: "E" },
-        { id: id++, name: "GPIOF", value: "F" },
-      ],
+      port: "GPIOA",
       pinTables: [
         { id: pinId++, name: "pin0", checked: false },
       ],
@@ -52,28 +44,30 @@ export default defineComponent({
         <el-button type="success">生成代码</el-button>
       </el-row>
 
-      <el-space direction="horizontal">
-        <div v-for="port in portTables" :key=port.id>
-          <input type="radio" :id="port.id.toString" :value="port.value" v-model="picked">{{ port.name }}
-        </div>
-      </el-space>
+      <el-radio-group v-model="port" size="large">
+        <el-radio-button label="GPIOA" />
+        <el-radio-button label="GPIOB" />
+        <el-radio-button label="GPIOE" />
+        <el-radio-button label="GPIOF" />
+      </el-radio-group>
 
       <el-space direction="horizontal">
         <div :key="1">
           <div v-for="(pin, index) in pinTables" :key="pin.id" class="text item">
             <div v-if="index < pinNumber / 2">
-              <input type="checkbox" :id="pin.id.toString" v-model="pin.checked">{{ pin.name }}
+              <el-checkbox :label="pin.id.toString" v-model="pin.checked" border>{{ pin.name }}</el-checkbox>
             </div>
           </div>
         </div>
         <div :key="2">
           <div v-for="(pin, index) in pinTables" :key="pin.id" class="text item">
             <div v-if="index > pinNumber / 2 - 1">
-              <input type="checkbox" :id="pin.id.toString" v-model="pin.checked">{{ pin.name }}
+              <el-checkbox :label="pin.id.toString" v-model="pin.checked" border>{{ pin.name }}</el-checkbox>
             </div>
           </div>
         </div>
       </el-space>
+
     </el-space>
   </el-card>
 
