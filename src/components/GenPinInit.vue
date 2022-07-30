@@ -1,6 +1,5 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
 
 let pinId = 0;
 export default defineComponent({
@@ -12,6 +11,7 @@ export default defineComponent({
             ],
             pinNumber: 16,
             pinIsUpdate: false,
+            pinDefaultStateIsLow: false,
             result: "未检测到引脚",
             dialogTableVisible: false,
             textarea2: "",
@@ -36,13 +36,18 @@ export default defineComponent({
         },
         genCodeDo() {
             if (this.pinIsUpdate == true) {
-                this.pinIsUpdate = false;
+                this.pinIsUpdate = false; // 避免重复数据
 
                 var pinCode = "(" + this.result + ")";
                 var portFen = this.port + "FEN" + " &= ~" + pinCode + ";\n";
                 var portDe = this.port + "DE" + " |= " + pinCode + ";\n";
-                var portDir = this.port + "DIR" + " &= ~" + pinCode + ";\n";;
-                var port = this.port + " |= " + pinCode + ";\n";
+                var portDir = this.port + "DIR" + " &= ~" + pinCode + ";\n";
+                var port = "";
+                if (this.pinDefaultStateIsLow == false) {
+                    port = this.port + " |= " + pinCode + ";\n";
+                } else {
+                    port = this.port + " &= ~" + pinCode + ";\n";
+                }
                 this.result = portFen + portDe + portDir + port;
             }
         },
@@ -65,7 +70,9 @@ export default defineComponent({
                 }
                 selectedPin = selectedPin.slice(0, selectedPin.length - 3);
                 this.result = selectedPin;
-                this.pinIsUpdate = true;
+                if (selectedPin != "") {
+                    this.pinIsUpdate = true;
+                }
             },
             deep: true
         }
@@ -84,6 +91,11 @@ export default defineComponent({
                 <el-button type="info" @click="clearPinSelection">清空pin选择</el-button>
                 <el-button type="success" @click="genCode">生成代码</el-button>
             </el-row>
+
+            <el-space direction="horizontal">
+                <el-tag size="large">默认引脚电平选择</el-tag>
+                <el-switch v-model="pinDefaultStateIsLow" size="large" active-text="低电平" inactive-text="高电平" />
+            </el-space>
 
             <el-radio-group v-model="port" size="large">
                 <el-radio-button label="GPIOA" />
@@ -114,7 +126,7 @@ export default defineComponent({
             <el-dialog v-model="dialogTableVisible" title="代码预览">
 
                 <el-input v-model="result" :autosize="{ minRows: 2, maxRows: 4 }" type="textarea"
-                    placeholder="Please input" />
+                    placeholder="未选择引脚" />
 
                 <template #footer>
                     <span class="dialog-footer">
