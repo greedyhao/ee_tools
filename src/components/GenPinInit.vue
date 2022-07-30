@@ -36,7 +36,6 @@ export default defineComponent({
         },
         genCodeEnd() {
             this.dialogTableVisible = false;
-            // this.$copyText(this.result);
             invoke('copy_text', { text: this.result });
         },
         genCodeDo() {

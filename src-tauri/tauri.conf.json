@@ -51,14 +51,19 @@
       "csp": null
     },
     "updater": {
-      "active": false
+      "active": true,
+      "endpoints": [
+          "https://gitee.com/haozhu1997/tauri-app-updates/blob/master/ee_tools/update.json"
+      ],
+      "dialog": false,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEY5MDk2OUE4MTE1NjlFOUYKUldTZm5sWVJxR2tKK1J3S2d6d0tVR1dYc1pWamRDT1JSaUNhVlRnK1F0eWFJR0FYd1JHOWdRQ1IK"
     },
     "windows": [
       {
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "ee_tools 0.1.0",
+        "title": "ee_tools",
         "width": 800
       }
     ]
