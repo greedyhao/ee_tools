@@ -17,7 +17,10 @@ declare module '@vue/runtime-core' {
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSpace: typeof import('element-plus/es')['ElSpace']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
     GenPinInit: typeof import('./src/components/GenPinInit.vue')['default']
+    ShowHexInBitView: typeof import('./src/components/ShowHexInBitView.vue')['default']
   }
 }
