@@ -1,15 +1,14 @@
 <script lang="ts" setup>
-import { nextTick ,ref, watch } from 'vue'
+import { nextTick, ref, watch } from 'vue'
 const inHex = ref('')
 
 watch(inHex, (newValue, oldValue) => {
-    const getValue = newValue.charAt(newValue.length - 1);
-    if (!((getValue >= '0' && getValue <= '9') || (getValue >= 'a' && getValue <= 'f') || (getValue >= 'A' && getValue <= 'F'))
-    || newValue.length > 8) {
-        nextTick(() => {
-            inHex.value = newValue.slice(0, -1);
-        });
-    }
+    const newValueSplit = newValue.split('');
+    const result = newValueSplit.filter(c => (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')).join('');
+
+    nextTick(() => {
+        inHex.value = result.substring(0, 8);
+    });
 });
 </script>
 
