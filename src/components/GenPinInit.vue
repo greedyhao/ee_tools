@@ -94,7 +94,7 @@ export default defineComponent({
 </script>
 
 <template>
-    <el-card class="box-card" style="width: 400px">
+    <el-card class="box-card">
 
         <el-space direction="vertical">
 
