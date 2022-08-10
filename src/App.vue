@@ -27,7 +27,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
     <el-tab-pane label="进制转换" name="2">
       <ShowHexInBitView />
     </el-tab-pane>
-    <el-tab-pane label="异常信息转换" name="3">
+    <el-tab-pane label="异常信息处理" name="3">
       <ConverExceptionLogVue />
     </el-tab-pane>
   </el-tabs>

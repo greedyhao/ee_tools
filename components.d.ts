@@ -8,17 +8,19 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ConverExceptionLog: typeof import('./src/components/ConverExceptionLog.vue')['default']
-    ElAside: typeof import('element-plus/es')['ElAside']
+    ConverExceptionLogAfter: typeof import('./src/components/ConverExceptionLogAfter.vue')['default']
+    ConverExceptionLogBefore: typeof import('./src/components/ConverExceptionLogBefore.vue')['default']
+    ConverExceptionLogOrg: typeof import('./src/components/ConverExceptionLogOrg.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCheckboxButton: typeof import('element-plus/es')['ElCheckboxButton']
     ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
-    ElCol: typeof import('element-plus/es')['ElCol']
-    ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElInput: typeof import('element-plus/es')['ElInput']
-    ElMain: typeof import('element-plus/es')['ElMain']
+    ElLink: typeof import('element-plus/es')['ElLink']
+    ElMenu: typeof import('element-plus/es')['ElMenu']
+    ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElRow: typeof import('element-plus/es')['ElRow']
@@ -28,6 +30,8 @@ declare module '@vue/runtime-core' {
     ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTag: typeof import('element-plus/es')['ElTag']
     GenPinInit: typeof import('./src/components/GenPinInit.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     ShowHexInBitView: typeof import('./src/components/ShowHexInBitView.vue')['default']
   }
 }
