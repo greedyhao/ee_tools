@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch, nextTick } from 'vue'
 
 const textarea = ref('')
 
-// const x0 = ref('0xXXXXXXXX');
 const ra = ref('0xXXXXXXXX');
 const sp = ref('0xXXXXXXXX');
 const gp = ref('0xXXXXXXXX');
@@ -36,8 +35,31 @@ const t4 = ref('0xXXXXXXXX');
 const t5 = ref('0xXXXXXXXX');
 const t6 = ref('0xXXXXXXXX');
 
+function readDateFromText(text: String, row: number, col: number) {
+    var reult = "0xXXXXXXXX";
+    if (text.split('\n').length > row) {
+        var temp = text.split('\n')[row];
+
+        if (temp.split(' ').length > col) {
+            reult = "0x" + temp.split(' ')[col];
+        }
+    }
+
+    return reult;
+}
+
+watch(textarea, (newValue, oldValue) => {
+    while (newValue.length > 0 && newValue[0] != 'E') {
+        newValue = newValue.substring(1);
+    }
+
+    nextTick(() => {
+        textarea.value = newValue;
+    });
+});
+
 const x0 = computed(() => {
-    return `0x${textarea.value.split('\n')[0]}`
+    return readDateFromText(textarea.value, 1, 0);
 }
 )
 
