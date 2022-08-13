@@ -9,7 +9,7 @@ import type { TabsPaneContext } from 'element-plus'
 import { emit } from '@tauri-apps/api/event'
 import { listen } from '@tauri-apps/api/event'
 
-const version = ref('0.1.1');
+const version = ref('0.1.2');
 const activeName = ref('1');
 const checked = ref(false);
 
